@@ -65,7 +65,7 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     Widget mainContent = const Center(
-      child: Text('No expenses found. Start adding some!'),
+      child: Text('Nenhuma despesa encontrada. Comece a adicionar'),
     );
 
     if (_registeredExpenses.isNotEmpty) {
@@ -76,7 +76,7 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter ExpenseTracker'),
+          title: const Text('Gerenciador de despesas'),
           actions: [
             IconButton(
               onPressed: _openAndExpenseOverlay,
