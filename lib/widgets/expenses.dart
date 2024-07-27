@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
@@ -15,15 +16,15 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
-        title: 'Flutter Course',
+        title: 'Curso Flutter',
         amount: 19.99,
         date: DateTime.now(),
-        category: Category.work),
+        category: Category.trabalho),
     Expense(
         title: 'Cinema',
         amount: 15.69,
         date: DateTime.now(),
-        category: Category.leisure),
+        category: Category.lazer),
   ];
 
   void _openAndExpenseOverlay() {
@@ -47,14 +48,16 @@ class _ExpensesState extends State<Expenses> {
     });
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(
-        duration: const  Duration(seconds: 3),
-        content: const Text('Expense deleted.'),
-        action: SnackBarAction(label: 'Undo', onPressed: () {
-          setState(() {
-            _registeredExpenses.insert(expenseIndex, expense);
-          });
-        }),
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Despesa deletada.'),
+        action: SnackBarAction(
+            label: 'Desfazer',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expenseIndex, expense);
+              });
+            }),
       ),
     );
   }
@@ -82,7 +85,10 @@ class _ExpensesState extends State<Expenses> {
           ],
         ),
         body: Column(
-          children: [const Text('The chart'), Expanded(child: mainContent)],
+          children: [
+            Chart(expenses: _registeredExpenses),
+            Expanded(child: mainContent),
+          ],
         ));
   }
 }

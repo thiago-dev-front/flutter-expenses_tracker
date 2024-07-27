@@ -19,7 +19,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
-  Category _selectedCategory = Category.leisure;
+  Category _selectedCategory = Category.lazer;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -46,15 +46,15 @@ class _NewExpenseState extends State<NewExpense> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Invalid Input'),
+          title: const Text('Campo Inválido'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category was entered...'),
+              'Certifique-se de que um título, valor, data e categoria válidos foram inseridos...'),
           actions: [
             TextButton(
                 onPressed: () {
                   Navigator.pop(ctx);
                 },
-                child: const Text('Okay'))
+                child: const Text('Ok'))
           ],
         ),
       );
@@ -88,7 +88,7 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             controller: _titleController,
             maxLength: 50,
-            decoration: const InputDecoration(label: Text('Title')),
+            decoration: const InputDecoration(label: Text('Título')),
           ),
           Row(
             children: [
@@ -98,7 +98,7 @@ class _NewExpenseState extends State<NewExpense> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     prefixText: 'R\$',
-                    label: Text('Amount'),
+                    label: Text('Valor'),
                   ),
                 ),
               ),
@@ -111,7 +111,7 @@ class _NewExpenseState extends State<NewExpense> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(_selectedDate == null
-                        ? 'No date selected'
+                        ? 'Insira a data'
                         : formatter.format(_selectedDate!)),
                     IconButton(
                       onPressed: _presentDatePicker,
@@ -150,11 +150,11 @@ class _NewExpenseState extends State<NewExpense> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text('Cancel'),
+                child: const Text('Cancelar'),
               ),
               ElevatedButton(
                 onPressed: _submitExpenseData,
-                child: const Text('Save Expense'),
+                child: const Text('Inserir despesa'),
               )
             ],
           )
